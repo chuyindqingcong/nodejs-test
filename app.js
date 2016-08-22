@@ -2,7 +2,7 @@ var express = require('express');
 var path=require('path');
 var port=process.env.PORT || 3000;
 var mongoose = require('mongoose');
-var Movie = require('./mondels/movie')
+var Movie = require('./models/movie');
 var _=require('underscore')
 var app =express();
 var serverStatic=require('serve-static');
@@ -35,7 +35,7 @@ app.get('/movie/:id',function(req,res){
 
 	Movie.findById(id,function(err,movie){
 		res.render('detale',{
-			title:'imooc'+movie.title,
+			title:'imooc ' + movie.title,
 			movie:movie
 			})
 	})
@@ -55,6 +55,19 @@ app.get('/admin/movie',function(req,res){
 			language:''
 		}
 	})
+})
+//admin update movie
+app.get('/admin/update/:id',function(req,res){
+	var id = req.params.id
+
+	if(id){
+		Movie.findById(id,function(err,movie){
+			res.render('admin',{
+				title:'imooc 后台更新页',
+				movie:movie
+			})
+		})
+	}
 })
 //admin post movie
 app.post('/admin/movie/new',function(req,res){
@@ -85,20 +98,25 @@ app.post('/admin/movie/new',function(req,res){
 			summary:movieObj.summary,
 			flash:movieObj.flash,
 		})
+
+		_movie.save(function(err,movie){
+			if(err){
+					console.log(err)
+				}
+			res.redirect('/movie/'+ movie._id)
+		})
 	}
 })
 // list page
 app.get('/admin/list',function(req,res){
-	res.render('list',{
-		title:'imooc 列表页面',
-		movies:[{
-			title:'机械战警',
-			_id:1,
-			doctor:'何塞',
-			country:'中国',
-			year:2018,
-			language:'日本',
-			flash:'http://player.youku.com/player.php/sid/XNjA1Njc0NTUy/v.swf'
-		}]
+	Movie.fetch(function(err,movie){
+			if(err){
+					console.log(err)
+				}
+
+		res.render('list',{
+			title:'imooc 列表页面',
+			movies:movie
+		})
 	})
 })
