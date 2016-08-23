@@ -59,7 +59,6 @@ app.get('/admin/movie',function(req,res){
 //admin update movie
 app.get('/admin/update/:id',function(req,res){
 	var id = req.params.id
-
 	if(id){
 		Movie.findById(id,function(err,movie){
 			res.render('admin',{
