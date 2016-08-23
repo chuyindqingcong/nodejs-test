@@ -1,0 +1,49 @@
+module.exports=function(grunt){
+	grunt.initConfig({
+		watch:{
+			jade:{
+				files:['views/**'],
+				options:{
+					livereload:true
+				}
+			},
+			js:{
+				files:['public/js/private/**','models/**/*.js','schemas/**/*.js'],
+				tasks:['jshint'],
+				options:{
+					livereload:true
+				}
+			}
+		},
+		nodemon:{
+			dev:{
+				options:{
+					file:'app.js',
+					args:[],
+					ignoredFiles:['README.md','node_modules/**','DS_Store'],
+					watchedExtensions:['js'],
+					watchedFolders:['app','config'],
+					debug:true,
+					delayTime:1,
+					env:{
+						PORT:3000
+					},
+					cwd:__dirname
+				}
+			}
+		},
+		concurrent:{
+			tasks:['nodemon','watch'],
+			options:{
+				logConcurrentOutput:true
+			}
+		}
+	})
+	grunt.option('force',true);
+	grunt.registerTask('default',['concurrent']);
+
+	grunt.loadNpmTasks('grunt-contrib-watch');//有文件添加修改删除，就会重新执行
+	grunt.loadNpmTasks('grunt-nodemon');//监听入口文件的修改自动重新启动
+	grunt.loadNpmTasks('grunt-concurrent');//sass,lass的编译
+
+}

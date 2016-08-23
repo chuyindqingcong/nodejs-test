@@ -3,7 +3,8 @@ var path=require('path');
 var port=process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var Movie = require('./models/movie');
-var _=require('underscore')
+var _user = require('./models/user');
+var _=require('underscore');
 var app =express();
 var serverStatic=require('serve-static');
 var bodyParser=require('body-parser');
@@ -40,6 +41,12 @@ app.get('/movie/:id',function(req,res){
 			movie:movie
 			})
 	})
+})
+//signup
+app.post('/user/signup',function(req,res){
+	var _user = req.body.user;
+	console.log(_user);
+	
 })
 // admin page
 app.get('/admin/movie',function(req,res){
