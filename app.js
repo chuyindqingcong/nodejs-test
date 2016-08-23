@@ -10,7 +10,8 @@ var bodyParser=require('body-parser');
 
 mongoose.connect('mongodb://localhost/imooc')
 
-app.use(serverStatic('bower_components'));
+app.use(serverStatic('public'));
+//app.use(express.static(path.join(__dirname,'public')))
 app.set('views','./views/pages');
 app.set('view engine','jade');
 app.use(bodyParser.urlencoded());
@@ -118,4 +119,19 @@ app.get('/admin/list',function(req,res){
 			movies:movie
 		})
 	})
+})
+
+//list delete movie
+app.delete('/admin/list',function(req,res){
+	var id=req.query.id;
+
+	if(id){
+		Movie.remove({_id:id},function(err,movie){
+			if(err){
+				console.log(err);
+			}else{
+				res.json({success:1})
+			}
+		})
+	}
 })

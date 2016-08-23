@@ -1,0 +1,21 @@
+{
+  "name": "imooc",
+  "description": "0.0.1",
+  "main": "index.js",
+  "authors": [
+    "xxx <chuxuguan1315@163.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/chuyindqingcong/nodejs-test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
