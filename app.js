@@ -22,7 +22,7 @@ if ('development' ===app.get('env')){
 	mongoose.set('debug',true);
 }
 //app.use(express.static(path.join(__dirname,'public')))
-app.set('views','./views/pages');
+app.set('views','./app/views/pages');
 app.set('view engine','jade');
 app.use(bodyParser.urlencoded());
 app.listen(port);

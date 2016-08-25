@@ -20,7 +20,7 @@ exports.singnup = function(req,res){
 	})
 }
 //signin
-exprotrs.siginin = function(req,res){
+exports.signin = function(req,res){
 	var _user = req.body.user;
 	var name=_user.name;
 	var password=_user.password;
