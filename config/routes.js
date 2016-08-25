@@ -14,8 +14,10 @@ module.exports=function(app){
 	// index page
 	app.get('/',Index.index)
 	// User
-	app.post('/user/signup',User.singnup)
+	app.post('/user/signup',User.signup)
 	app.post('/user/signin',User.signin)
+	app.get('/signin',User.showSignin)
+	app.get('/signup',User.showSignup)
 	app.get('/logout',User.logout)
 	app.get('/admin/userlist',User.list)
 	//movie

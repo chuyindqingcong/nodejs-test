@@ -1,6 +1,18 @@
 var User = require('../models/user');
-//signup
-exports.singnup = function(req,res){
+//show Signin
+exports.showSignin = function(req,res){
+		res.render('signin',{
+			title:'注册页面',
+		})
+}
+// showSignup page
+exports.showSignup = function(req,res){
+		res.render('signup',{
+			title:'登录页面',
+		})
+}
+//signin
+exports.signin = function(req,res){
 	var _user = req.body.user;
 	User.findOne({name:_user.name},function(err,user){
 		if(err){
@@ -19,8 +31,8 @@ exports.singnup = function(req,res){
 		}
 	})
 }
-//signin
-exports.signin = function(req,res){
+//signup
+exports.signup = function(req,res){
 	var _user = req.body.user;
 	var name=_user.name;
 	var password=_user.password;
