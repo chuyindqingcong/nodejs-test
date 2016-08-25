@@ -1,6 +1,6 @@
-var Movie = require('../models/movie');
-var User = require('../models/user');
-var _=require('underscore');
+var Index = require('../app/controllers/index');
+var User = require('../app/controllers/user');
+var movie = require('../app/controllers/movie')
 
 module.exports=function(app){
 	//预处理
