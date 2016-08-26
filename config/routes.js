@@ -29,4 +29,4 @@ module.exports=function(app){
 	app.get('/movie/:id',Movie.detail)
 	app.delete('/admin/movie/list',User.signinRequired,User.adminRequired,Movie.del)
 	//comment
-	app.post('/admin/comment',User.signinRequired,User.adminRequired,Comment.save)
+	app.post('/admin/comment',User.signinRequired,Comment.save)
