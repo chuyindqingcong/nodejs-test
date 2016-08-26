@@ -42,7 +42,7 @@ exports.signin = function(req,res){
 			console.log(err)
 		}
 		if(!user){
-			res.redirect('/signup')
+			return res.redirect('/signup')
 		}
 		user.comparePassword(password,function(err,isMatch){
 			if(err){
@@ -52,7 +52,7 @@ exports.signin = function(req,res){
 				req.session.user= user;
 				return res.redirect('/');
 			}else{
-				res.redirect('/signup')
+				return res.redirect('/signup')
 			}
 		})
 	})
@@ -75,4 +75,21 @@ exports.list = function(req,res){
 			users:users
 		})
 	})
+}
+//midware for user
+exports.signinRequired = function(req,res,next){
+	var user = req.session.user;
+
+	if(!user){
+		return res.redirect('/signin');
+	}
+	next();
+}
+exports.adminRequired = function(req,res,next){
+	var user = req.session.user;
+	console.log(user.role)
+	if(user.role<=10){
+		return res.redirect('/')
+	}
+	next();
 }

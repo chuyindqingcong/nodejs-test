@@ -23,7 +23,7 @@ exports.new = function(req,res){
 			poster:'',
 			flash:'',
 			summary:'',
-			language:''
+			languange:''
 		}
 	})
 }
@@ -62,7 +62,7 @@ exports.save = function(req,res){
 			doctor:movieObj.doctor,
 			title:movieObj.title,
 			country:movieObj.country,
-			language:movieObj.language,
+			languange:movieObj.languange,
 			year:movieObj.year,
 			poster:movieObj.poster,
 			summary:movieObj.summary,
