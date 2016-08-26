@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var objectId = Schema.Types.objectId;
+var ObjectId = Schema.Types.ObjectId;
 
 var CommentSchema = new Schema({
-	movie:{type:objectId,ref:'Movie'},
-	from:{type:objectId,ref:'User'},
-	to:{type:objectId,ref:'User'},
+	movie:{type:ObjectId,ref:'Movie'},
+	from:{type:ObjectId,ref:'User'},
+	to:{type:ObjectId,ref:'User'},
 	content:String,
 	meta:{
 		createAt:{

@@ -30,3 +30,4 @@ module.exports=function(app){
 	app.delete('/admin/movie/list',User.signinRequired,User.adminRequired,Movie.del)
 	//comment
 	app.post('/admin/comment',User.signinRequired,Comment.save)
+}
