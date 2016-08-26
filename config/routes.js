@@ -1,6 +1,7 @@
 var Index = require('../app/controller/index');
 var User = require('../app/controller/user');
-var Movie = require('../app/controller/movie')
+var Movie = require('../app/controller/movie');
+var Comment = require('../app/controller/comment')
 
 module.exports=function(app){
 	//预处理
@@ -27,4 +28,5 @@ module.exports=function(app){
 	app.get('/admin/movie/list',User.signinRequired,User.adminRequired,Movie.list)
 	app.get('/movie/:id',Movie.detail)
 	app.delete('/admin/movie/list',User.signinRequired,User.adminRequired,Movie.del)
-}
+	//comment
+	app.post('/admin/comment',User.signinRequired,User.adminRequired,Comment.save)
